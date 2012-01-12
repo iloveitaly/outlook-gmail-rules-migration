@@ -23,14 +23,13 @@ template = %Q(
 <entry>
   <category term='filter'></category>
   <title>%s</title>
-  <apps:property name='from' value='%s/>
+  <apps:property name='from' value='%s'/>
   <apps:property name='label' value='%s'/>
   <apps:property name='shouldArchive' value='true'/>
-</entry>
-)
+</entry>)
 
 rule_data.each do |row|
-  gmail_rules += template % ["", row[0], row[1]]
+  gmail_rules += template % [row[1], row[0], row[1]]
 end
 
-puts gmail_rules
+puts "<?xml version='1.0' encoding='UTF-8'?><feed xmlns='http://www.w3.org/2005/Atom' xmlns:apps='http://schemas.google.com/apps/2006'>" + gmail_rules + "</feed>"
